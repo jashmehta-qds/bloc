@@ -29,8 +29,15 @@ class FirstPageLoaded extends BottomNavigationState {
 }
 
 class SecondPageLoaded extends BottomNavigationState {
-  SecondPageLoaded({@required this.number});
-  final int number;
+  SecondPageLoaded({@required this.text});
+  final int text;
   @override
-  String toString() => 'SecondPageLoaded with number: $number';
+  String toString() => 'SecondPageLoaded with text: $text';
+}
+
+class ThirdPageLoaded extends BottomNavigationState {
+  ThirdPageLoaded({@required this.text});
+  final int text;
+  @override
+  String toString() => 'ThirdPageLoaded with text: $text';
 }

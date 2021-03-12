@@ -5,6 +5,8 @@ import 'package:flutter_login/bottom_navigation/bottom_navigation.dart';
 import 'package:listing_repository/listing_repository.dart';
 import 'package:calculator_repository/calculator_repository.dart';
 
+import '../../bottom_navigation/bottom_navigation.dart';
+
 class HomePage extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => HomePage());
@@ -63,13 +65,16 @@ class _HomeViewState extends State<HomeView> {
                     (BottomNavigationBloc bloc) => bloc.state,
                   );
                   if (state is PageLoading) {
-                    return Text('Hi : $userId');
+                    return Text('Initial Page load text : $userId');
                   }
                   if (state is FirstPageLoaded) {
-                    return Text('Bye $userId');
+                    return Text('Clicked on First: $userId');
                   }
                   if (state is SecondPageLoaded) {
-                    return Text('Try $userId');
+                    return Text('Clicked on Second: $userId');
+                  }
+                  if (state is ThirdPageLoaded) {
+                    return Text('Clicked on Third: $userId');
                   }
                   return Container();
                 },

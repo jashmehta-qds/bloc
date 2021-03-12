@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:listing_repository/listing_repository.dart';
 import 'package:calculator_repository/calculator_repository.dart';
-
 part 'bottom_navigation_event.dart';
 part 'bottom_navigation_state.dart';
 
@@ -37,7 +36,11 @@ class BottomNavigationBloc
       }
       if (currentIndex == 1) {
         var data = await _getSecondPageData();
-        yield SecondPageLoaded(number: data);
+        yield SecondPageLoaded(text: data);
+      }
+      if (currentIndex == 2) {
+        var data = await _getThirdPageData();
+        yield ThirdPageLoaded(text: data);
       }
     }
   }
@@ -52,6 +55,15 @@ class BottomNavigationBloc
   }
 
   Future<int> _getSecondPageData() async {
+    var data = calculatorRepository.data;
+    if (data == null) {
+      await calculatorRepository.fetchList();
+      data = calculatorRepository.data;
+    }
+    return data;
+  }
+
+  Future<int> _getThirdPageData() async {
     var data = calculatorRepository.data;
     if (data == null) {
       await calculatorRepository.fetchList();
