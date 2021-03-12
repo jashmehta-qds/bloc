@@ -85,6 +85,32 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
         ),
+        drawer: Drawer(
+          child: ListView(
+            children: <Widget>[
+              DrawerHeader(
+                child: Text('Drawer Header'),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+              ),
+              ListTile(
+                title: Text('Item 1'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: Text('Item 2'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+            ],
+          ),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           // ignore: lines_longer_than_80_chars
           currentIndex: context.select((BottomNavigationBloc bloc) =>
