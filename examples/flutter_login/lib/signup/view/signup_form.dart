@@ -3,21 +3,6 @@ import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_login/login/login.dart';
 
-Size displaySize(BuildContext context) {
-  debugPrint('Size = ${MediaQuery.of(context).size}');
-  return MediaQuery.of(context).size;
-}
-
-double displayHeight(BuildContext context) {
-  debugPrint('Height = ${displaySize(context).height}');
-  return displaySize(context).height;
-}
-
-double displayWidth(BuildContext context) {
-  debugPrint('Width = ${displaySize(context).width}');
-  return displaySize(context).width;
-}
-
 class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,7 +17,7 @@ class LoginForm extends StatelessWidget {
         }
       },
       child: Align(
-        alignment: const Alignment(0, 0),
+        alignment: const Alignment(0, -1 / 3),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -41,11 +26,9 @@ class LoginForm extends StatelessWidget {
             _PasswordInput(),
             const Padding(padding: EdgeInsets.all(12)),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _SignUpButton(),
-                const Spacer(),
-                _ForgotPassowrd(),
-                const Spacer(),
+                _SubmitButton(),
                 _LoginButton(),
               ],
             )
@@ -69,9 +52,6 @@ class _UsernameInput extends StatelessWidget {
           decoration: InputDecoration(
             labelText: 'username',
             errorText: state.username.invalid ? 'invalid username' : null,
-            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
           ),
         );
       },
@@ -93,9 +73,6 @@ class _PasswordInput extends StatelessWidget {
           decoration: InputDecoration(
             labelText: 'password',
             errorText: state.password.invalid ? 'invalid password' : null,
-            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
           ),
         );
       },
@@ -112,13 +89,6 @@ class _LoginButton extends StatelessWidget {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
             : ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  minimumSize: Size(displayWidth(context) * 0.25, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                ),
                 key: const Key('loginForm_continue_raisedButton'),
                 child: const Text('Login'),
                 onPressed: state.status.isValidated
@@ -132,50 +102,13 @@ class _LoginButton extends StatelessWidget {
   }
 }
 
-class _SignUpButton extends StatelessWidget {
+class _SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(displayWidth(context) * 0.25, 50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-      ),
       key: const Key('loginForm_signup_raisedButton'),
       child: const Text('Sign Up'),
-      onPressed: () {},
-    );
-  }
-}
-
-class _XSignUpButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(displayWidth(context) * 0.25, 50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-      ),
-      key: const Key('loginForm_signup_raisedButton'),
-      child: const Text('Sign Up'),
-      onPressed: () {},
-    );
-  }
-}
-
-class _ForgotPassowrd extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(displayWidth(context) * 0.25, 50),
-      ),
-      key: const Key('loginForm_forgotPassword_textButton'),
-      child: const Text('Forgot Password ?'),
-      onPressed: () {},
+      onPressed: null,
     );
   }
 }

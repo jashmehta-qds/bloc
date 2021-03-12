@@ -16,6 +16,10 @@ dependencies:
     path: packages/authentication_repository
   user_repository:
     path: packages/user_repository
+  listing_repository:
+    path: packages/listing_repository
+  calculator_repository:
+    path: packages/calculator_repository
 
 dev_dependencies:
   flutter_test:
